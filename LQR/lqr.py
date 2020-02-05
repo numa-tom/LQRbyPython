@@ -138,7 +138,7 @@ if __name__ == '__main__':
         ay = float(gyro.get_yacc_value())
         az = float(gyro.get_zacc_value())
 
-        accelAngle = math.atan2(ay, az)
+        accelAngle = math.atan2(ay, az) * 180/np.pi
         angle_x = K*(angle_x+gx*dt)+(1-K)*accelAngle
 
         W_angle = float('{0:.3f}'.format(struct.unpack(">h", struct.pack(">H", Get_encoder_value()))[0]))*360/600.0
