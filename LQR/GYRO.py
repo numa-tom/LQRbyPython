@@ -105,7 +105,7 @@ class GYRO:
             self.__MAG_X = self.mag_conv((Mg_Sense_return[1] << 8) + Mg_Sense_return[0])
             self.__MAG_Y = self.mag_conv((Mg_Sense_return[3] << 8) + Mg_Sense_return[2])
             self.__MAG_Z = self.mag_conv((Mg_Sense_return[5] << 8) + Mg_Sense_return[4])
-            time.sleep(0.05)
+            time.sleep(0.005)
 
     def accel_conv(self, val):
         return (
@@ -176,9 +176,9 @@ class GYRO:
         #com_y = ()
         begin = time.time()
         now = begin
-        print("ƒLƒƒƒŠƒuƒŒ[ƒVƒ‡ƒ“ŠJŽn")
+        print("ã‚­ãƒ£ãƒªãƒ–ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³é–‹å§‹")
         while (now - begin) < count:
-            print("\r‚ ‚Æ".format(count - int(now - begin)), end="")
+            print("\rã‚ã¨".format(count - int(now - begin)), end="")
             now = time.time()
             Sense_return = i2c.read_i2c_block_data(ADDR, GYRO_XOUT_H, 6)
             x_data += (self.gyro_conv((Sense_return[0] << 8) + Sense_return[1]),)
@@ -193,7 +193,7 @@ class GYRO:
         self.__calib_z = -1 * sum(z_data) / len(z_data)
         self.__calib_com_x = -1 * sum(com_x) / len(com_x)
         self.__calib_com_y = -1 * sum(com_y) / len(com_y)
-        print("\nŒ‹‰Ê")
+        print("\nçµæžœ")
         print(
             "X:{0}\tY:{1}\tZ:{2}\n".format(
                 self.__calib_x, self.__calib_y, self.__calib_z
